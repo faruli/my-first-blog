@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Django Girls Blog</title>
-    <body>
-        <header>
-            <h1><a href=""> Django Girls Blog</a></h1>            
-        </header>
+{% extends 'blog/base.html' %}
 
-        {% for post in posts %}
-            <article> 
-                <time> published: 06.11.2023 15:27</time>
-                <h2><a href="">My first post</a></h2>
-                <p>{{ post.text|linebreaks }}</p>
-            </article>
-        {% endfor %}
-
-        <article>
-            <time> published: 06.11.2023 15:31</time>
-            <h2><a href="">My second post</a></h2>
-            <p>Es ist wieder soweit. Ich gebe hier wieder mal einen Text ein, der einfach gar nicht zu bedeuten hat. Ab soll ich tun, so ist es halt.</p>
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </article>
-
-    </body>
-
-    <footer>&copy; Hans.com</footer>
-</html>
+    {% endfor %}
+{% endblock %}
