@@ -4,14 +4,16 @@
         <title>Django Girls Blog</title>
     <body>
         <header>
-            <h1><a href=""> Django Girls Blog</a></h1>
+            <h1><a href=""> Django Girls Blog</a></h1>            
         </header>
 
-        <article> 
-            <time> published: 06.11.2023 15:27</time>
-            <h2><a href="">My first post</a></h2>
-            <p>Das ist einfach ein Dummy-Text, damit da überhaupt irgendwas in diesem Absatz steht und nicht alles so leer aussieht.</p>
-        </article>
+        {% for post in posts %}
+            <article> 
+                <time> published: 06.11.2023 15:27</time>
+                <h2><a href="">My first post</a></h2>
+                <p>{{ post.text|linebreaks }}</p>
+            </article>
+        {% endfor %}
 
         <article>
             <time> published: 06.11.2023 15:31</time>
